@@ -1,6 +1,104 @@
+import { useEffect } from "react";
 import { SKILLS, SKILL_CATEGORIES } from "../../data/portfolioData.jsx";
 import SectionTitle from "../common/SectionTitle";
 import styles from "./Skills.module.css";
+
+// ── Per-category emoji animation classes ─────────────────────
+const EMOJI_CLASS = {
+  backend:     "emoji-backend",
+  cloud:       "emoji-cloud",
+  frontend:    "emoji-frontend",
+  database:    "emoji-database",
+  tools:       "emoji-tools",
+  methodology: "emoji-methodology",
+};
+
+// ── Inject keyframes once into <head> ────────────────────────
+const ANIM_CSS = `
+  /* ☕ Backend – two steam wisps rising */
+  @keyframes steam1 {
+    0%   { transform: translateY(0px)   scaleX(1);   opacity: .8; }
+    100% { transform: translateY(-16px) scaleX(1.5); opacity: 0;  }
+  }
+  @keyframes steam2 {
+    0%   { transform: translateY(0px)   scaleX(1);   opacity: .6; }
+    100% { transform: translateY(-20px) scaleX(.6);  opacity: 0;  }
+  }
+  .emoji-backend {
+    position: relative;
+    display: inline-block;
+  }
+  .emoji-backend::before,
+  .emoji-backend::after {
+    content: "〜";
+    position: absolute;
+    top: -4px;
+    font-size: 9px;
+    color: #93c5fd;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .emoji-backend::before { left: 1px;  animation: steam1 1.5s ease-out infinite; }
+  .emoji-backend::after  { left: 9px;  animation: steam2 1.5s ease-out infinite .6s; }
+
+  /* ☁️ Cloud – soft floating drift */
+  @keyframes cloudFloat {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    33%       { transform: translateY(-5px) translateX(2px); }
+    66%       { transform: translateY(-3px) translateX(-2px); }
+  }
+  .emoji-cloud {
+    display: inline-block;
+    animation: cloudFloat 3.5s ease-in-out infinite;
+  }
+
+  /* 🎨 Frontend – rainbow hue cycle */
+  @keyframes colorSpin {
+    0%   { filter: hue-rotate(0deg)   drop-shadow(0 0 2px rgba(255,100,200,0)); }
+    50%  { filter: hue-rotate(180deg) drop-shadow(0 0 6px rgba(255,100,200,.6)); }
+    100% { filter: hue-rotate(360deg) drop-shadow(0 0 2px rgba(255,100,200,0)); }
+  }
+  .emoji-frontend {
+    display: inline-block;
+    animation: colorSpin 3s linear infinite;
+  }
+
+  /* 🗄️ Database – vertical stack pulse */
+  @keyframes dbPulse {
+    0%, 100% { transform: scaleY(1)    scaleX(1);    filter: brightness(1);   }
+    30%       { transform: scaleY(1.14) scaleX(.96);  filter: brightness(1.3); }
+    65%       { transform: scaleY(.92) scaleX(1.04);  filter: brightness(.85); }
+  }
+  .emoji-database {
+    display: inline-block;
+    transform-origin: 50% 100%;
+    animation: dbPulse 2s ease-in-out infinite;
+  }
+
+  /* 🔧 Tools – bolt-tightening wiggle */
+  @keyframes wrenchTurn {
+    0%, 100% { transform: rotate(0deg);   }
+    20%       { transform: rotate(-28deg); }
+    50%       { transform: rotate(22deg);  }
+    75%       { transform: rotate(-12deg); }
+  }
+  .emoji-tools {
+    display: inline-block;
+    transform-origin: 50% 75%;
+    animation: wrenchTurn 2s ease-in-out infinite;
+  }
+
+  /* 📋 Methodology – page flip */
+  @keyframes pageFlip {
+    0%, 100% { transform: rotateY(0deg);   }
+    30%       { transform: rotateY(-35deg); }
+    65%       { transform: rotateY(18deg);  }
+  }
+  .emoji-methodology {
+    display: inline-block;
+    animation: pageFlip 2.6s ease-in-out infinite;
+  }
+`;
 
 // ── Official logos via Devicons CDN ──────────────────────────
 const LOGO = {
@@ -60,11 +158,13 @@ function SkillBadge({ label }) {
   );
 }
 
-function SkillCard({ icon, label, skills }) {
+function SkillCard({ categoryKey, icon, label, skills }) {
+  const emojiClass = EMOJI_CLASS[categoryKey] ?? "";
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
-        <span className={styles.cardIcon}>{icon}</span>
+        {/* Animated emoji */}
+        <span className={`${styles.cardIcon} ${emojiClass}`}>{icon}</span>
         <h3 className={styles.cardTitle}>{label}</h3>
       </div>
       <div className={styles.badges}>
@@ -77,13 +177,29 @@ function SkillCard({ icon, label, skills }) {
 }
 
 export default function Skills() {
+  // Inject animation CSS once on mount
+  useEffect(() => {
+    if (document.getElementById("skill-emoji-anim")) return;
+    const tag = document.createElement("style");
+    tag.id = "skill-emoji-anim";
+    tag.textContent = ANIM_CSS;
+    document.head.appendChild(tag);
+    return () => document.getElementById("skill-emoji-anim")?.remove();
+  }, []);
+
   return (
     <section id="skills" className={styles.section}>
       <div className={styles.inner}>
         <SectionTitle label="Technical Skills" sub="Technologies I work with" />
         <div className={styles.grid}>
           {SKILL_CATEGORIES.map(({ key, icon, label }) => (
-            <SkillCard key={key} icon={icon} label={label} skills={SKILLS[key]} />
+            <SkillCard
+              key={key}
+              categoryKey={key}
+              icon={icon}
+              label={label}
+              skills={SKILLS[key]}
+            />
           ))}
         </div>
       </div>
