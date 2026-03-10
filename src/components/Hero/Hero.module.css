@@ -1,0 +1,205 @@
+.section {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.orb1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(108,99,255,0.14) 0%, transparent 70%);
+}
+.orb2 {
+  width: 360px;
+  height: 360px;
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(224,64,251,0.11) 0%, transparent 70%);
+}
+
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 780px;
+  width: 100%;
+  text-align: center;
+  animation: fadeUp 0.8s ease both;
+}
+
+/* Photo */
+.photoWrapper {
+  position: relative;
+  animation: float 4s ease-in-out infinite;
+}
+
+.photoRing {
+  width: 132px;
+  height: 132px;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--gradient);
+  box-shadow: 0 0 40px rgba(108,99,255,0.4);
+  animation: pulseRing 3s ease-in-out infinite;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 3px solid var(--bg-primary);
+}
+
+.onlineDot {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  border: 3px solid var(--bg-primary);
+}
+
+/* Text */
+.greeting {
+  color: var(--accent-1);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: -8px;
+}
+
+.name {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 500;
+  color: var(--accent-1);
+  min-height: 32px;
+  margin: 0;
+}
+
+.cursor {
+  color: var(--accent-2);
+  transition: opacity 0.1s;
+}
+
+.tagline {
+  color: var(--text-secondary);
+  font-size: 16px;
+  max-width: 480px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Certs */
+.certRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.certBadge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(224,64,251,0.12));
+  border: 1px solid rgba(108,99,255,0.3);
+  color: #a78bfa;
+}
+
+/* Contact chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  border-color: var(--border-accent);
+  color: var(--text-primary);
+}
+
+/* Scroll hint */
+.scrollHint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.scrollLine {
+  width: 2px;
+  height: 30px;
+  border-radius: 2px;
+  background: linear-gradient(var(--accent-1), transparent);
+  animation: float 1.5s ease-in-out infinite;
+}
+
+/* Animations (local copy for this module) */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes pulseRing {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .name   { font-size: 2rem; }
+  .chips  { flex-direction: column; align-items: center; }
+  .chip   { width: 100%; justify-content: center; }
+}

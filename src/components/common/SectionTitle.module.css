@@ -1,0 +1,24 @@
+.wrapper {
+  text-align: center;
+}
+
+.heading {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.sub {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.line {
+  width: 52px;
+  height: 3px;
+  border-radius: 2px;
+  margin: 14px auto 0;
+  background: var(--gradient);
+}

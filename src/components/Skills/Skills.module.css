@@ -1,0 +1,114 @@
+.section {
+  background: var(--bg-secondary);
+  padding: 80px 24px;
+}
+
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px rgba(108, 99, 255, 0.12);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.cardIcon { font-size: 22px; }
+
+.cardTitle {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ── Badges ──────────────────────────────────────────── */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px 5px 8px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  background: rgba(108, 99, 255, 0.08);
+  border: 1px solid var(--border-accent);
+  color: #c4b5fd;
+  transition: all 0.22s ease;
+  cursor: default;
+}
+
+:global([data-theme="light"]) .badge {
+  color: #4c1d95;
+  background: rgba(108, 99, 255, 0.06);
+}
+
+.badge:hover {
+  background: rgba(108, 99, 255, 0.18);
+  border-color: var(--accent-1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(108, 99, 255, 0.2);
+}
+
+/* Official logo image */
+.badgeLogo {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  /* Keep dark-mode logos visible */
+  filter: none;
+}
+
+/* For GitHub logo which is black — invert on dark mode */
+:global([data-theme="dark"]) .badge img[alt="GitHub"] {
+  filter: invert(1);
+}
+
+/* Fallback dot when no logo */
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-1);
+  flex-shrink: 0;
+}
+
+.badgeLabel {
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
