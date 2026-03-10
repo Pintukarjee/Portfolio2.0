@@ -35,7 +35,7 @@ export const EDUCATION = [
     tag: "Intermediate",
   },
   {
-    degree: "10th - Secondary Education (SSC)",
+    degree: "10th - Higher Secondary Education (HSC)",
     university: "Sri Limeswari Bidya Pitha",
     location: "Tumbagada, Ganjam, Odisha",
     year: "2015",
