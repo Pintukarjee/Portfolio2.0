@@ -3,7 +3,6 @@ import { SKILLS, SKILL_CATEGORIES } from "../../data/portfolioData.jsx";
 import SectionTitle from "../common/SectionTitle";
 import styles from "./Skills.module.css";
 
-// ── Per-category emoji animation classes ─────────────────────
 const EMOJI_CLASS = {
   backend:     "emoji-backend",
   cloud:       "emoji-cloud",
@@ -13,7 +12,6 @@ const EMOJI_CLASS = {
   methodology: "emoji-methodology",
 };
 
-// ── Inject keyframes once into <head> ────────────────────────
 const ANIM_CSS = `
   /* ☕ Backend – two steam wisps rising */
   @keyframes steam1 {
@@ -100,7 +98,6 @@ const ANIM_CSS = `
   }
 `;
 
-// ── Official logos via Devicons CDN ──────────────────────────
 const LOGO = {
   "Core Java":            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
   "Spring Boot":          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
@@ -177,7 +174,7 @@ function SkillCard({ categoryKey, icon, label, skills }) {
 }
 
 export default function Skills() {
-  // Inject animation CSS once on mount
+
   useEffect(() => {
     if (document.getElementById("skill-emoji-anim")) return;
     const tag = document.createElement("style");

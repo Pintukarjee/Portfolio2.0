@@ -1,7 +1,3 @@
-// ============================================================
-//  src/components/Hero/Hero.jsx
-// ============================================================
-
 import { useState, useEffect } from "react";
 import { PROFILE, CONTACT, CERTIFICATIONS } from "../../data/portfolioData.jsx";
 import DownloadButton from "./DownloadButton";

@@ -1,7 +1,3 @@
-// ============================================================
-//  src/components/common/SectionTitle.jsx
-// ============================================================
-
 import styles from "./SectionTitle.module.css";
 
 export default function SectionTitle({ label, sub }) {

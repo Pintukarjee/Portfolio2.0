@@ -1,7 +1,3 @@
-// ============================================================
-//  src/components/common/ScrollToTop.jsx
-// ============================================================
-
 import { useScrollTop } from "../../hooks/useScrollTop.jsx";
 import styles from "./ScrollToTop.module.css";
 

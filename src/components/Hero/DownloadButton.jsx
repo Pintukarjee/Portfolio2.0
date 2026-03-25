@@ -17,7 +17,7 @@ export default function DownloadButton() {
   };
 
   return (
-    
+    <a
       href="/Pintu_Karjee_Resume.pdf"
       download="Pintu_Karjee_Resume.pdf"
       className={`${styles.btn} ${styles[state]}`}
@@ -33,7 +33,11 @@ export default function DownloadButton() {
       {state === "idle" && <span className={styles.icon}>⬇</span>}
       {state === "done" && <span className={styles.icon}>✓</span>}
       <span className={styles.label}>
-        {state === "loading" ? "Preparing…" : state === "done" ? "Ready!" : "Download Resume"}
+        {state === "loading"
+          ? "Preparing…"
+          : state === "done"
+          ? "Ready!"
+          : "Download Resume"}
       </span>
     </a>
   );

@@ -1,7 +1,3 @@
-// ============================================================
-//  src/components/Navbar/Navbar.jsx
-// ============================================================
-
 import { useState } from "react";
 import { useTheme } from "../../hooks/useTheme.jsx";
 import { NAV_LINKS } from "../../data/portfolioData.jsx";

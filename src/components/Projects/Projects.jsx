@@ -1,8 +1,3 @@
-// ============================================================
-//  src/components/Projects/Projects.jsx
-//  Projects will be added here later
-// ============================================================
-
 import { PROJECTS } from "../../data/portfolioData.jsx";
 import SectionTitle from "../common/SectionTitle";
 import styles from "./Projects.module.css";
